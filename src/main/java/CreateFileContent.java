@@ -1,10 +1,14 @@
-import java.io.*;
-import org.apache.poi.hssf.usermodel.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateFileContent {
 	// private final static String outputFile =
 	// "e:\\jljxt_v1.x????????_java.xls";
 	private final String IGNORE_DIR = ".git";// ".svn"; 
+	private final String IGNORE_DIR1 = "node_modules";// ".svn"; 
 	private final String IGNORE_File = "Thumbs.db";
 	private final String NEED_File = ".java";
 	private final String NEED_File1 = ".vue";
@@ -50,6 +54,10 @@ public class CreateFileContent {
 			count--;
 			return;
 		}
+		if (src.getName().equalsIgnoreCase(IGNORE_DIR1)) {
+			count--;
+			return;
+		}
 		File[] files = src.listFiles();
 		for (int i = 0; i < files.length; i++) {
 			getFiles(files[i], file);
@@ -64,21 +72,17 @@ public class CreateFileContent {
 		// HSSFSheet sheet = workbook.createSheet();
 		// File des=new File("c:\\CreateFile.txt");
 		// File src=new File("F:\\秘书号源码\\iOS\\20130204\\DialAssistant");
-		File des = new File("/Users/hlf/ws/Tools/sunvue.txt");
-		File src = new File("/Users/hlf/workspace/sunvue/sunvue-gateway-app");
-		// app.getFiles(new File("E:\\work\\edutohome\\source\\TBL\\web"),
-		// sheet);
-		// app.getFiles(new File("E:\\work\\edutohome\\source\\TBL\\mvnforum"),
-		// sheet);
-		// app.getFiles(new
-		// File("E:\\work\\edutohome\\source\\ServerPlatForm\\src"), sheet);
-		// app.getFiles(new
-		// File("D:\\clearcase\\lhxs_view\\LHXS\\dev\\omp\\code\\WebRoot"),
-		// sheet);
-		// app.getFiles(new
-		// File("D:\\clearcase\\yaoyang_view_qxt\\QXT\\dev\\AHQXT-EX2\\code\\WebRoot"),
-		// sheet);
+		
+		//String[] modules= {"sunvue-gateway-webapp","sunvue-job","sunvue-mobile","sunvue-base","sunvue-pojo","sunvue-common","sunvue-provider-app","sunvue-dao","sunvue-provider-common","sunvue-facade-app","sunvue-provider-tojsbank","sunvue-facade-bank","sunvue-provider-tozbbank","sunvue-facade-common","sunvue-provider-webapp","sunvue-facade-webapp","sunvue-webapp","sunvue-gateway-app"};
+		File des = new File("/Users/hlf/ws/Tools/sun_risk-all.txt");
+		File src = new File("/Users/hlf/abcd/sun_risk");
 		app.getFiles(src, des);
+//		for(String module:modules) {
+//			
+//			File des = new File("/Users/hlf/ws/Tools/"+module+".txt");
+//			File src = new File("/Users/hlf/workspace/sunvue/"+module);
+//			app.getFiles(src, des);
+//		}
 		System.out.println("123");
 	}
 }
